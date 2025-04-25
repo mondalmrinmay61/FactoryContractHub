@@ -99,7 +99,7 @@ export default function AuthPage() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      <div className="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">
+      <div className="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-6xl w-full space-y-8 flex flex-col md:flex-row gap-8">
           {/* Auth Forms */}
           <div className="md:w-1/2">
@@ -148,7 +148,7 @@ export default function AuthPage() {
                         />
                         <Button 
                           type="submit" 
-                          className="w-full" 
+                          className="w-full bg-brand hover:bg-brand-700" 
                           disabled={loginMutation.isPending || isLoading}
                         >
                           {loginMutation.isPending ? "Logging in..." : "Sign In"}
@@ -235,7 +235,7 @@ export default function AuthPage() {
                         />
                         <Button 
                           type="submit" 
-                          className="w-full" 
+                          className="w-full bg-brand hover:bg-brand-700" 
                           disabled={registerMutation.isPending || isLoading}
                         >
                           {registerMutation.isPending ? "Creating Account..." : "Register"}
@@ -249,13 +249,13 @@ export default function AuthPage() {
           </div>
           
           {/* Hero Section */}
-          <div className="md:w-1/2 bg-gradient-to-r from-slate-900 to-sky-900 text-white rounded-lg px-8 py-12 flex flex-col justify-center">
+          <div className="md:w-1/2 bg-gradient-to-r from-emerald-900 to-emerald-700 text-white rounded-lg px-8 py-12 flex flex-col justify-center">
             <h2 className="text-3xl font-bold mb-4">Welcome to ContractHub</h2>
             <p className="mb-6">The premier platform connecting companies with qualified contractors for industrial and construction projects.</p>
             
             <div className="space-y-4">
               <div className="flex">
-                <div className="flex-shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-white">
+                <div className="flex-shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-brand text-white">
                   ✓
                 </div>
                 <div className="ml-4">
@@ -263,7 +263,7 @@ export default function AuthPage() {
                 </div>
               </div>
               <div className="flex">
-                <div className="flex-shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-white">
+                <div className="flex-shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-brand text-white">
                   ✓
                 </div>
                 <div className="ml-4">
@@ -271,7 +271,7 @@ export default function AuthPage() {
                 </div>
               </div>
               <div className="flex">
-                <div className="flex-shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-white">
+                <div className="flex-shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-brand text-white">
                   ✓
                 </div>
                 <div className="ml-4">
@@ -279,7 +279,7 @@ export default function AuthPage() {
                 </div>
               </div>
               <div className="flex">
-                <div className="flex-shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-white">
+                <div className="flex-shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-brand text-white">
                   ✓
                 </div>
                 <div className="ml-4">
