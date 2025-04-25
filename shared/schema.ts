@@ -4,7 +4,7 @@ import { z } from "zod";
 import { relations } from "drizzle-orm";
 
 // Enums
-export const userRoleEnum = pgEnum('user_role', ['company', 'contractor']);
+export const userRoleEnum = pgEnum('user_role', ['company', 'contractor', 'admin']);
 export const projectStatusEnum = pgEnum('project_status', ['open', 'in_progress', 'completed', 'cancelled']);
 export const bidStatusEnum = pgEnum('bid_status', ['pending', 'accepted', 'rejected', 'withdrawn']);
 export const milestoneStatusEnum = pgEnum('milestone_status', ['pending', 'completed', 'verified', 'paid']);
@@ -123,6 +123,13 @@ export const milestones = pgTable("milestones", {
   description: text("description"),
   amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
   dueDate: timestamp("due_date"),
+  completionDate: timestamp("completion_date"),
+  verificationDate: timestamp("verification_date"),
+  paymentDate: timestamp("payment_date"),
+  paymentReference: text("payment_reference"),
+  deliverableUrl: text("deliverable_url"),
+  notes: text("notes"),
+  order: integer("order").default(0),
   status: milestoneStatusEnum("status").default("pending").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull()
@@ -220,7 +227,7 @@ export const insertUserSchema = createInsertSchema(users, {
   username: z.string().min(3, "Username must be at least 3 characters"),
   email: z.string().email("Must provide a valid email"),
   password: z.string().min(6, "Password must be at least 6 characters"),
-  role: z.enum(['company', 'contractor'], { required_error: "Role must be either company or contractor" })
+  role: z.enum(['company', 'contractor', 'admin'], { required_error: "Role must be either company, contractor, or admin" })
 });
 
 export const insertProfileSchema = createInsertSchema(profiles, {
@@ -241,6 +248,20 @@ export const insertProjectSchema = createInsertSchema(projects, {
 export const insertBidSchema = createInsertSchema(bids, {
   amount: z.number().gt(0, "Bid amount must be greater than 0"),
   description: z.string().min(10, "Description must be at least 10 characters")
+});
+
+export const insertMilestoneSchema = createInsertSchema(milestones, {
+  title: z.string().min(3, "Title must be at least 3 characters"),
+  description: z.string().min(10, "Description must be at least 10 characters").optional(),
+  amount: z.number().gt(0, "Amount must be greater than 0"),
+  order: z.number().int().nonnegative("Order must be a non-negative integer")
+});
+
+export const updateMilestoneStatusSchema = z.object({
+  id: z.number().int().positive(),
+  status: z.enum(['pending', 'completed', 'verified', 'paid']),
+  notes: z.string().optional(),
+  deliverableUrl: z.string().url("Must provide a valid URL").optional().nullable()
 });
 
 export const insertReviewSchema = createInsertSchema(reviews, {
@@ -269,6 +290,10 @@ export type Project = typeof projects.$inferSelect;
 
 export type InsertBid = z.infer<typeof insertBidSchema>;
 export type Bid = typeof bids.$inferSelect;
+
+export type InsertMilestone = z.infer<typeof insertMilestoneSchema>;
+export type Milestone = typeof milestones.$inferSelect;
+export type UpdateMilestoneStatus = z.infer<typeof updateMilestoneStatusSchema>;
 
 export type InsertReview = z.infer<typeof insertReviewSchema>;
 export type Review = typeof reviews.$inferSelect;
