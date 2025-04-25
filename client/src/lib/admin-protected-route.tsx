@@ -1,5 +1,5 @@
 import { useAuth } from "@/hooks/use-auth";
-import { Loader2, ShieldAlert } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { Redirect, Route } from "wouter";
 
 export function AdminProtectedRoute({
@@ -21,28 +21,13 @@ export function AdminProtectedRoute({
     );
   }
 
-  if (!user) {
+  if (!user || user.role !== 'admin') {
     return (
       <Route path={path}>
-        <Redirect to="/auth" />
+        <Redirect to="/" />
       </Route>
     );
   }
 
-  if (user.role !== "admin") {
-    return (
-      <Route path={path}>
-        <div className="flex flex-col items-center justify-center min-h-screen p-4 text-center">
-          <ShieldAlert className="h-16 w-16 text-red-500 mb-4" />
-          <h1 className="text-2xl font-bold mb-2">Access Denied</h1>
-          <p className="text-gray-600 mb-4">
-            You don't have permission to access this page. This area is restricted to administrators only.
-          </p>
-          <Redirect to="/dashboard" />
-        </div>
-      </Route>
-    );
-  }
-
-  return <Component />;
+  return <Route path={path} component={Component} />;
 }

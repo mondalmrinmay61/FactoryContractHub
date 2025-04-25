@@ -11,8 +11,12 @@ import ContractorsPage from "@/pages/contractors-page";
 import ContractorDetailPage from "@/pages/contractor-detail-page";
 import DashboardPage from "@/pages/dashboard-page";
 import ProfilePage from "@/pages/profile-page";
+import MilestonesPage from "@/pages/milestones-page";
+import AdminDashboardPage from "@/pages/admin/dashboard-page";
+import AdminUsersPage from "@/pages/admin/users-page";
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "@/lib/protected-route";
+import { AdminProtectedRoute } from "@/lib/admin-protected-route";
 
 function Router() {
   return (
@@ -25,6 +29,13 @@ function Router() {
       <Route path="/contractors/:id" component={ContractorDetailPage} />
       <ProtectedRoute path="/dashboard" component={DashboardPage} />
       <ProtectedRoute path="/profile" component={ProfilePage} />
+      <ProtectedRoute path="/contracts/:id/milestones" component={MilestonesPage} />
+      
+      {/* Admin Routes */}
+      <AdminProtectedRoute path="/admin" component={AdminDashboardPage} />
+      <AdminProtectedRoute path="/admin/dashboard" component={AdminDashboardPage} />
+      <AdminProtectedRoute path="/admin/users" component={AdminUsersPage} />
+      
       <Route component={NotFound} />
     </Switch>
   );
