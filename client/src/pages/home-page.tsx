@@ -67,31 +67,41 @@ export default function HomePage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="hero-gradient py-20">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-8 md:mb-0">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Connect Companies with Qualified Contractors</h1>
-              <p className="text-lg mb-8 text-emerald-50">ContractHub streamlines the process of finding, hiring, and managing contractors for your projects. Post your requirements and get bids from qualified professionals.</p>
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+      <section className="hero-gradient relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/90 to-emerald-800/90 z-0"></div>
+        <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="md:w-1/2 space-y-8">
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-emerald-200">
+                Connect Companies with Qualified Contractors
+              </h1>
+              <p className="text-xl text-emerald-50/90 leading-relaxed">
+                ContractHub streamlines the process of finding, hiring, and managing contractors for your projects. Post your requirements and get bids from qualified professionals.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link href="/auth?role=company">
-                  <Button className="w-full sm:w-auto bg-white text-emerald-800 hover:bg-emerald-50 font-medium px-6 py-3 rounded-md transition-colors shadow-lg">
+                  <Button className="w-full sm:w-auto bg-white text-emerald-800 hover:bg-emerald-50 font-semibold px-8 py-6 rounded-xl transition-all duration-300 shadow-xl hover:shadow-emerald-500/20 text-lg">
                     I'm a Company
                   </Button>
                 </Link>
                 <Link href="/auth?role=contractor">
-                  <Button className="w-full sm:w-auto border-2 border-white text-white hover:bg-emerald-800/20 font-medium px-6 py-3 rounded-md transition-colors">
+                  <Button className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold px-8 py-6 rounded-xl transition-all duration-300 text-lg">
                     I'm a Contractor
                   </Button>
                 </Link>
               </div>
             </div>
             <div className="md:w-1/2 flex justify-center">
-              <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
-                alt="Contractor and company handshake" 
-                className="rounded-lg shadow-xl max-w-full h-auto border-4 border-white/20" 
-                width="500" 
-                height="350" />
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500 to-emerald-300 rounded-2xl blur-2xl opacity-30 animate-pulse"></div>
+                <img 
+                  src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                  alt="Contractor and company handshake" 
+                  className="relative rounded-2xl shadow-2xl max-w-full h-auto border-4 border-white/20 transform hover:scale-[1.02] transition-transform duration-500" 
+                  width="600" 
+                  height="400" 
+                />
+              </div>
             </div>
           </div>
         </div>
