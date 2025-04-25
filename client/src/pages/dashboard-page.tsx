@@ -78,8 +78,7 @@ export default function DashboardPage() {
       
       <div className="flex-grow flex">
         {/* Dashboard Sidebar */}
-        <aside className="hidden md:block w-64 bg-emerald-900 text-white border-r border-emerald-800 min-h-screen">
-        <div className="sticky top-0">
+        <aside className="hidden md:block w-64 bg-emerald-900 text-white border-r border-emerald-800">
           <div className="p-4">
             <div className="flex items-center mb-8">
               <div className="w-10 h-10 bg-brand rounded-full flex items-center justify-center text-white mr-3">
