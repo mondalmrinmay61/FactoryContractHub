@@ -9,7 +9,7 @@ import { BellRing, MessagesSquare, Handshake } from "lucide-react";
 
 export default function HomePage() {
   // Fetch featured projects
-  const { data: projects } = useQuery({
+  const { data: projects = [] } = useQuery<any[]>({
     queryKey: ["/api/projects"],
     staleTime: 1000 * 60 * 5, // 5 minutes
   });
@@ -67,20 +67,20 @@ export default function HomePage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="hero-gradient py-16">
+      <section className="hero-gradient py-20">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">Connect Companies with Qualified Contractors</h1>
-              <p className="text-lg mb-8 text-slate-200">ContractHub streamlines the process of finding, hiring, and managing contractors for your projects. Post your requirements and get bids from qualified professionals.</p>
+              <p className="text-lg mb-8 text-emerald-50">ContractHub streamlines the process of finding, hiring, and managing contractors for your projects. Post your requirements and get bids from qualified professionals.</p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <Link href="/auth?role=company">
-                  <Button className="w-full sm:w-auto btn-primary">
+                  <Button className="w-full sm:w-auto bg-white text-emerald-800 hover:bg-emerald-50 font-medium px-6 py-3 rounded-md transition-colors shadow-lg">
                     I'm a Company
                   </Button>
                 </Link>
                 <Link href="/auth?role=contractor">
-                  <Button className="w-full sm:w-auto btn-accent">
+                  <Button className="w-full sm:w-auto border-2 border-white text-white hover:bg-emerald-800/20 font-medium px-6 py-3 rounded-md transition-colors">
                     I'm a Contractor
                   </Button>
                 </Link>
@@ -89,7 +89,7 @@ export default function HomePage() {
             <div className="md:w-1/2 flex justify-center">
               <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
                 alt="Contractor and company handshake" 
-                className="rounded-lg shadow-xl max-w-full h-auto" 
+                className="rounded-lg shadow-xl max-w-full h-auto border-4 border-white/20" 
                 width="500" 
                 height="350" />
             </div>
@@ -98,65 +98,66 @@ export default function HomePage() {
       </section>
       
       {/* How It Works Section */}
-      <section className="py-16 bg-white" id="how-it-works">
+      <section className="py-20 bg-white" id="how-it-works">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-slate-800">How ContractHub Works</h2>
+          <h2 className="text-3xl font-bold text-center mb-4 heading-gradient">How ContractHub Works</h2>
+          <p className="text-center mb-12 text-gray-600 max-w-2xl mx-auto">Our streamlined process makes it easy to connect companies with qualified contractors.</p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-slate-50 rounded-xl p-6 shadow-md flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mb-4">
-                <BellRing className="text-sky-600 h-8 w-8" />
+            <div className="bg-white rounded-xl p-8 shadow-md flex flex-col items-center text-center border border-emerald-100 hover:border-brand-600 transition-all">
+              <div className="w-16 h-16 bg-brand-100 rounded-full flex items-center justify-center mb-4">
+                <BellRing className="text-brand-600 h-8 w-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-slate-800">Post Your Project</h3>
-              <p className="text-slate-600">Describe your project needs, timeline, and budget to attract qualified contractors.</p>
+              <h3 className="text-xl font-semibold mb-2 text-gray-800">Post Your Project</h3>
+              <p className="text-gray-600">Describe your project needs, timeline, and budget to attract qualified contractors.</p>
             </div>
             
-            <div className="bg-slate-50 rounded-xl p-6 shadow-md flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mb-4">
-                <MessagesSquare className="text-sky-600 h-8 w-8" />
+            <div className="bg-white rounded-xl p-8 shadow-md flex flex-col items-center text-center border border-emerald-100 hover:border-brand-600 transition-all">
+              <div className="w-16 h-16 bg-brand-100 rounded-full flex items-center justify-center mb-4">
+                <MessagesSquare className="text-brand-600 h-8 w-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-slate-800">Receive & Compare Bids</h3>
-              <p className="text-slate-600">Review proposals from interested contractors and select the best match for your project.</p>
+              <h3 className="text-xl font-semibold mb-2 text-gray-800">Receive & Compare Bids</h3>
+              <p className="text-gray-600">Review proposals from interested contractors and select the best match for your project.</p>
             </div>
             
-            <div className="bg-slate-50 rounded-xl p-6 shadow-md flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mb-4">
-                <Handshake className="text-sky-600 h-8 w-8" />
+            <div className="bg-white rounded-xl p-8 shadow-md flex flex-col items-center text-center border border-emerald-100 hover:border-brand-600 transition-all">
+              <div className="w-16 h-16 bg-brand-100 rounded-full flex items-center justify-center mb-4">
+                <Handshake className="text-brand-600 h-8 w-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-slate-800">Complete Your Project</h3>
-              <p className="text-slate-600">Track progress, manage milestones, and finalize work through our secure platform.</p>
+              <h3 className="text-xl font-semibold mb-2 text-gray-800">Complete Your Project</h3>
+              <p className="text-gray-600">Track progress, manage milestones, and finalize work through our secure platform.</p>
             </div>
           </div>
         </div>
       </section>
       
       {/* Featured Projects Section */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-slate-800">Featured Projects</h2>
-            <Link href="/projects" className="text-sky-600 hover:text-sky-700 font-medium">
+            <h2 className="text-3xl font-bold heading-gradient">Featured Projects</h2>
+            <Link href="/projects" className="text-brand-600 hover:text-brand-700 font-medium">
               View All Projects <span aria-hidden="true">→</span>
             </Link>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects && projects.slice(0, 3).map((project) => (
-              <ProjectCard 
-                key={project.id} 
-                project={project} 
-                profile={{
-                  name: project.company?.name || "Company Name",
-                  avatar: project.company?.avatar || "https://randomuser.me/api/portraits/men/32.jpg"
-                }}
-              />
-            ))}
-            
-            {!projects && (
+            {projects && projects.length > 0 ? (
+              projects.slice(0, 3).map((project: any) => (
+                <ProjectCard 
+                  key={project.id} 
+                  project={project} 
+                  profile={{
+                    name: project.company?.name || "Company Name",
+                    avatar: project.company?.avatar || "https://randomuser.me/api/portraits/men/32.jpg"
+                  }}
+                />
+              ))
+            ) : (
               <>
-                <div className="bg-white rounded-lg shadow-md overflow-hidden border border-slate-200 h-80 animate-pulse"></div>
-                <div className="bg-white rounded-lg shadow-md overflow-hidden border border-slate-200 h-80 animate-pulse"></div>
-                <div className="bg-white rounded-lg shadow-md overflow-hidden border border-slate-200 h-80 animate-pulse"></div>
+                <div className="bg-white rounded-lg shadow-md overflow-hidden border border-emerald-100 h-80 animate-pulse"></div>
+                <div className="bg-white rounded-lg shadow-md overflow-hidden border border-emerald-100 h-80 animate-pulse"></div>
+                <div className="bg-white rounded-lg shadow-md overflow-hidden border border-emerald-100 h-80 animate-pulse"></div>
               </>
             )}
           </div>

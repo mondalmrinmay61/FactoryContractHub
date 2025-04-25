@@ -10,37 +10,37 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 198 100% 39%; /* sky-600 */
+    --primary: 153 100% 37%; /* #00bf63 */
     --primary-foreground: 210 40% 98%;
-    --secondary: 198 93% 60%; /* sky-400 */
+    --secondary: 153 59% 85%; /* lighter green */
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 24 97% 53%; /* orange-500 */
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 130 41% 46%; /* darker green */
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 198 93% 60%;
+    --ring: 153 100% 37%;
     --radius: 0.5rem;
     
     /* Chart colors */
-    --chart-1: 198 100% 39%;
-    --chart-2: 198 93% 60%;
-    --chart-3: 198 65% 75%;
-    --chart-4: 24 97% 53%;
-    --chart-5: 24 90% 70%;
+    --chart-1: 153 100% 37%;
+    --chart-2: 153 75% 60%;
+    --chart-3: 153 65% 75%;
+    --chart-4: 130 41% 46%;
+    --chart-5: 156 100% 23%;
     
     /* Sidebar colors */
-    --sidebar-background: 222.2 84% 4.9%;
+    --sidebar-background: 210 20% 25%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 198 100% 39%;
+    --sidebar-primary: 153 100% 37%;
     --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 24 97% 53%;
+    --sidebar-accent: 130 41% 46%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 217.2 32.6% 17.5%;
-    --sidebar-ring: 198 93% 60%;
+    --sidebar-ring: 153 100% 37%;
   }
 
   .dark {
@@ -50,19 +50,19 @@
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 198 100% 39%;
+    --primary: 153 100% 37%;
     --primary-foreground: 210 40% 98%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 24 97% 53%;
+    --accent: 130 41% 46%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 198 93% 60%;
+    --ring: 153 100% 37%;
   }
   
   * {
@@ -80,30 +80,46 @@
 
 @layer components {
   .hero-gradient {
-    @apply bg-gradient-to-r from-slate-900 to-sky-900 text-white;
+    @apply bg-gradient-to-r from-emerald-900 to-green-700 text-white;
   }
   
   .cta-gradient {
-    @apply bg-gradient-to-r from-sky-800 to-sky-900 text-white;
+    @apply bg-gradient-to-r from-emerald-700 to-emerald-900 text-white;
   }
   
   .btn-primary {
-    @apply bg-sky-600 hover:bg-sky-700 text-white font-medium px-4 py-2 rounded-md transition-colors;
+    @apply bg-primary hover:bg-emerald-600 text-white font-medium px-4 py-2 rounded-md transition-colors;
   }
   
   .btn-accent {
-    @apply bg-orange-500 hover:bg-orange-600 text-white font-medium px-4 py-2 rounded-md transition-colors;
+    @apply bg-accent hover:bg-emerald-800 text-white font-medium px-4 py-2 rounded-md transition-colors;
   }
   
   .btn-white {
-    @apply bg-white text-sky-800 hover:bg-gray-100 font-medium px-4 py-2 rounded-md transition-colors;
+    @apply bg-white text-emerald-800 hover:bg-gray-100 font-medium px-4 py-2 rounded-md transition-colors shadow-sm;
   }
   
   .tag {
-    @apply bg-sky-100 text-sky-800 text-xs px-2 py-1 rounded-full font-medium;
+    @apply bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded-full font-medium;
   }
   
   .skill-tag {
-    @apply bg-slate-100 text-slate-700 rounded-full px-2 py-1 text-xs;
+    @apply bg-emerald-50 text-emerald-700 rounded-full px-2 py-1 text-xs;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow;
+  }
+  
+  .section {
+    @apply py-12 md:py-16;
+  }
+  
+  .container {
+    @apply px-4 mx-auto max-w-7xl;
+  }
+  
+  .heading-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-green-500 font-bold;
   }
 }
