@@ -18,7 +18,7 @@ export function Navbar() {
   const { user, logoutMutation } = useAuth();
   
   const isActive = (path: string) => {
-    return location === path ? "text-sky-400" : "hover:text-sky-400";
+    return location === path ? "text-brand-400" : "hover:text-brand-400";
   };
   
   const handleLogout = () => {
@@ -30,11 +30,11 @@ export function Navbar() {
   };
 
   return (
-    <nav className="bg-slate-900 text-white">
+    <nav className="bg-emerald-900 text-white shadow-md">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-2">
-            <Building className="text-sky-500 h-6 w-6" />
+            <Building className="text-brand-400 h-6 w-6" />
             <Link href="/" className="font-bold text-xl">ContractHub</Link>
           </div>
           
@@ -45,7 +45,7 @@ export function Navbar() {
             <Link href="/contractors" className={`transition ${isActive("/contractors")}`}>
               Find Contractors
             </Link>
-            <Link href="/#how-it-works" className="hover:text-sky-400 transition">
+            <Link href="/#how-it-works" className="hover:text-brand-400 transition">
               How It Works
             </Link>
           </div>
@@ -56,7 +56,7 @@ export function Navbar() {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                     <Avatar className="h-8 w-8">
-                      <AvatarFallback className="bg-sky-600">
+                      <AvatarFallback className="bg-brand">
                         {getInitials(user.username)}
                       </AvatarFallback>
                     </Avatar>
@@ -77,10 +77,10 @@ export function Navbar() {
               </DropdownMenu>
             ) : (
               <>
-                <Link href="/auth" className="hover:text-sky-400 transition hidden md:inline">
+                <Link href="/auth" className="hover:text-brand-400 transition hidden md:inline">
                   Sign In
                 </Link>
-                <Link href="/auth" className="bg-sky-600 hover:bg-sky-700 px-4 py-2 rounded-md transition">
+                <Link href="/auth" className="bg-brand hover:bg-brand-700 px-4 py-2 rounded-md transition text-white">
                   Get Started
                 </Link>
               </>
@@ -118,7 +118,7 @@ export function Navbar() {
               </Link>
               <Link 
                 href="/#how-it-works" 
-                className="hover:text-sky-400 transition py-2"
+                className="hover:text-brand-400 transition py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 How It Works
@@ -126,7 +126,7 @@ export function Navbar() {
               {!user && (
                 <Link 
                   href="/auth" 
-                  className="hover:text-sky-400 transition py-2"
+                  className="hover:text-brand-400 transition py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Sign In
