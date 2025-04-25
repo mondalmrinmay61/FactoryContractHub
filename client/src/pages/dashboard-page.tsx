@@ -43,14 +43,14 @@ export default function DashboardPage() {
   // Calculate dashboard stats based on the role
   const stats = {
     company: [
-      { label: "Active Projects", value: userProjects?.filter((p: any) => p.status === "open" || p.status === "in_progress")?.length || 0 },
-      { label: "Completed Projects", value: userProjects?.filter((p: any) => p.status === "completed")?.length || 0 },
-      { label: "Open Bids", value: userProjects?.reduce((acc: number, project: any) => acc + (project.bidCount || 0), 0) || 0 },
+      { label: "Active Projects", value: Array.isArray(userProjects) ? userProjects.filter((p: any) => p.status === "open" || p.status === "in_progress").length : 0 },
+      { label: "Completed Projects", value: Array.isArray(userProjects) ? userProjects.filter((p: any) => p.status === "completed").length : 0 },
+      { label: "Open Bids", value: Array.isArray(userProjects) ? userProjects.reduce((acc: number, project: any) => acc + (project.bidCount || 0), 0) : 0 },
     ],
     contractor: [
-      { label: "Active Bids", value: userProjects?.filter((b: any) => b.status === "pending")?.length || 0 },
-      { label: "Won Contracts", value: userProjects?.filter((b: any) => b.status === "accepted")?.length || 0 },
-      { label: "Completed Jobs", value: userProjects?.filter((b: any) => b.project?.status === "completed")?.length || 0 },
+      { label: "Active Bids", value: Array.isArray(userProjects) ? userProjects.filter((b: any) => b.status === "pending").length : 0 },
+      { label: "Won Contracts", value: Array.isArray(userProjects) ? userProjects.filter((b: any) => b.status === "accepted").length : 0 },
+      { label: "Completed Jobs", value: Array.isArray(userProjects) ? userProjects.filter((b: any) => b.project?.status === "completed").length : 0 },
     ],
   };
 
@@ -171,8 +171,8 @@ export default function DashboardPage() {
               {(user.role === "company" ? stats.company : stats.contractor).map((stat, index) => (
                 <Card key={index}>
                   <CardContent className="pt-6">
-                    <div className="text-3xl font-bold">{stat.value}</div>
-                    <p className="text-sm text-slate-500">{stat.label}</p>
+                    <div className="text-3xl font-bold text-emerald-800">{stat.value}</div>
+                    <p className="text-sm text-emerald-600">{stat.label}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -203,30 +203,30 @@ export default function DashboardPage() {
                       <div className="flex justify-center py-12">
                         <Loader2 className="h-8 w-8 animate-spin text-slate-400" />
                       </div>
-                    ) : userProjects && userProjects.length > 0 ? (
+                    ) : userProjects && Array.isArray(userProjects) && userProjects.length > 0 ? (
                       <div className="grid grid-cols-1 gap-4">
-                        {userProjects.slice(0, 3).map((item: any) => (
+                        {(userProjects as any[]).slice(0, 3).map((item: any) => (
                           <div key={item.id} className="border rounded-lg p-4">
                             {user.role === "company" ? (
                               <div>
                                 <h3 className="font-semibold">{item.title}</h3>
                                 <div className="flex justify-between mt-2">
-                                  <span className="text-sm text-slate-500">Status: {item.status.replace('_', ' ')}</span>
-                                  <span className="text-sm text-slate-500">Bids: {item.bidCount || 0}</span>
+                                  <span className="text-sm text-emerald-600">Status: {item.status.replace('_', ' ')}</span>
+                                  <span className="text-sm text-emerald-600">Bids: {item.bidCount || 0}</span>
                                 </div>
                                 <Link href={`/projects/${item.id}`}>
-                                  <Button variant="link" className="p-0 mt-2">View Project</Button>
+                                  <Button variant="link" className="p-0 mt-2 text-brand hover:text-brand-700">View Project</Button>
                                 </Link>
                               </div>
                             ) : (
                               <div>
                                 <h3 className="font-semibold">{item.project?.title || "Project"}</h3>
                                 <div className="flex justify-between mt-2">
-                                  <span className="text-sm text-slate-500">Bid Amount: ${Number(item.amount).toLocaleString()}</span>
-                                  <span className="text-sm text-slate-500">Status: {item.status}</span>
+                                  <span className="text-sm text-emerald-600">Bid Amount: ${Number(item.amount).toLocaleString()}</span>
+                                  <span className="text-sm text-emerald-600">Status: {item.status}</span>
                                 </div>
                                 <Link href={`/projects/${item.projectId}`}>
-                                  <Button variant="link" className="p-0 mt-2">View Project</Button>
+                                  <Button variant="link" className="p-0 mt-2 text-brand hover:text-brand-700">View Project</Button>
                                 </Link>
                               </div>
                             )}
@@ -234,25 +234,25 @@ export default function DashboardPage() {
                         ))}
                         
                         <Link href={user.role === "company" ? "/dashboard/projects" : "/dashboard/bids"}>
-                          <Button variant="outline" className="w-full mt-2">
+                          <Button variant="outline" className="w-full mt-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800">
                             View All
                           </Button>
                         </Link>
                       </div>
                     ) : (
                       <div className="text-center py-6">
-                        <p className="text-slate-500 mb-4">
+                        <p className="text-emerald-600 mb-4">
                           {user.role === "company" 
                             ? "You haven't posted any projects yet." 
                             : "You haven't submitted any bids yet."}
                         </p>
                         {user.role === "company" ? (
-                          <Button onClick={() => setNewProjectDialogOpen(true)}>
+                          <Button onClick={() => setNewProjectDialogOpen(true)} className="bg-brand hover:bg-brand-700">
                             Post Your First Project
                           </Button>
                         ) : (
                           <Link href="/projects">
-                            <Button>Browse Projects</Button>
+                            <Button className="bg-brand hover:bg-brand-700">Browse Projects</Button>
                           </Link>
                         )}
                       </div>
@@ -271,8 +271,8 @@ export default function DashboardPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="text-center py-6">
-                      <MessageSquare className="h-12 w-12 text-slate-300 mx-auto mb-3" />
-                      <p className="text-slate-500">No messages yet.</p>
+                      <MessageSquare className="h-12 w-12 text-emerald-300 mx-auto mb-3" />
+                      <p className="text-emerald-600">No messages yet.</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -288,8 +288,8 @@ export default function DashboardPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="text-center py-6">
-                      <Bell className="h-12 w-12 text-slate-300 mx-auto mb-3" />
-                      <p className="text-slate-500">No notifications at this time.</p>
+                      <Bell className="h-12 w-12 text-emerald-300 mx-auto mb-3" />
+                      <p className="text-emerald-600">No notifications at this time.</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -307,48 +307,48 @@ export default function DashboardPage() {
               <CardContent>
                 <div className="mb-4">
                   <div className="flex justify-between items-center mb-1">
-                    <span className="text-sm text-slate-600">Profile Completion</span>
-                    <span className="text-sm font-medium">60%</span>
+                    <span className="text-sm text-emerald-700">Profile Completion</span>
+                    <span className="text-sm font-medium text-emerald-800">60%</span>
                   </div>
-                  <div className="w-full bg-slate-200 rounded-full h-2.5">
-                    <div className="bg-sky-600 h-2.5 rounded-full" style={{ width: "60%" }}></div>
+                  <div className="w-full bg-emerald-100 rounded-full h-2.5">
+                    <div className="bg-brand h-2.5 rounded-full" style={{ width: "60%" }}></div>
                   </div>
                 </div>
                 
                 <div className="space-y-3">
                   <div className="flex items-center">
-                    <div className="w-4 h-4 rounded-full bg-green-500 flex items-center justify-center mr-2">
+                    <div className="w-4 h-4 rounded-full bg-brand flex items-center justify-center mr-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-sm text-slate-600">Account created</span>
+                    <span className="text-sm text-emerald-700">Account created</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-4 h-4 rounded-full bg-green-500 flex items-center justify-center mr-2">
+                    <div className="w-4 h-4 rounded-full bg-brand flex items-center justify-center mr-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-sm text-slate-600">Email verified</span>
+                    <span className="text-sm text-emerald-700">Email verified</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-4 h-4 rounded-full bg-slate-300 flex items-center justify-center mr-2">
+                    <div className="w-4 h-4 rounded-full bg-emerald-200 flex items-center justify-center mr-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <Link href="/profile" className="text-sm text-sky-600 hover:underline">
+                    <Link href="/profile" className="text-sm text-brand hover:underline">
                       Complete your profile details
                     </Link>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-4 h-4 rounded-full bg-slate-300 flex items-center justify-center mr-2">
+                    <div className="w-4 h-4 rounded-full bg-emerald-200 flex items-center justify-center mr-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-sm text-slate-600">
+                    <span className="text-sm text-emerald-700">
                       {user.role === "company" 
                         ? "Add company details" 
                         : "Upload portfolio and certifications"}
