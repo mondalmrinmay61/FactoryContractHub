@@ -165,11 +165,11 @@ export default function HomePage() {
       </section>
       
       {/* Top Contractors Section */}
-      <section className="py-16 bg-white">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-slate-800">Top Rated Contractors</h2>
-            <Link href="/contractors" className="text-sky-600 hover:text-sky-700 font-medium">
+            <h2 className="text-3xl font-bold heading-gradient">Top Rated Contractors</h2>
+            <Link href="/contractors" className="text-brand-600 hover:text-brand-700 font-medium">
               View All Contractors <span aria-hidden="true">→</span>
             </Link>
           </div>
@@ -183,20 +183,21 @@ export default function HomePage() {
       </section>
       
       {/* Testimonials Section */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-20 bg-emerald-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-slate-800">What Our Users Say</h2>
+          <h2 className="text-3xl font-bold text-center mb-6 heading-gradient">What Our Users Say</h2>
+          <p className="text-center mb-12 text-gray-600 max-w-2xl mx-auto">Read about the experiences of companies and contractors who have found success on our platform.</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+            <div className="bg-white p-8 rounded-lg shadow-md border border-emerald-100 hover:border-brand-600 transition-all">
               <div className="flex items-start mb-4">
                 <div className="flex-shrink-0 mr-4">
-                  <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Testimonial author" className="w-12 h-12 rounded-full" />
+                  <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Testimonial author" className="w-16 h-16 rounded-full border-2 border-brand-100" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-800">Jennifer Lawrence</h4>
-                  <p className="text-slate-500 text-sm">Operations Manager at BuildRight Inc.</p>
-                  <div className="flex text-yellow-400 mt-1">
+                  <h4 className="font-semibold text-gray-800 text-lg">Jennifer Lawrence</h4>
+                  <p className="text-gray-500 text-sm">Operations Manager at BuildRight Inc.</p>
+                  <div className="flex text-brand-500 mt-1">
                     <span className="sr-only">5 out of 5 stars</span>
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
@@ -206,18 +207,18 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              <p className="text-slate-600 italic">"ContractHub has revolutionized how we find and hire contractors. The platform is intuitive, and we've been able to find quality professionals for all our projects. The bidding system helps us get competitive pricing while ensuring we still get top-quality work."</p>
+              <p className="text-gray-600 italic">"ContractHub has revolutionized how we find and hire contractors. The platform is intuitive, and we've been able to find quality professionals for all our projects. The bidding system helps us get competitive pricing while ensuring we still get top-quality work."</p>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+            <div className="bg-white p-8 rounded-lg shadow-md border border-emerald-100 hover:border-brand-600 transition-all">
               <div className="flex items-start mb-4">
                 <div className="flex-shrink-0 mr-4">
-                  <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Testimonial author" className="w-12 h-12 rounded-full" />
+                  <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Testimonial author" className="w-16 h-16 rounded-full border-2 border-brand-100" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-800">Michael Rodriguez</h4>
-                  <p className="text-slate-500 text-sm">Independent Electrical Contractor</p>
-                  <div className="flex text-yellow-400 mt-1">
+                  <h4 className="font-semibold text-gray-800 text-lg">Michael Rodriguez</h4>
+                  <p className="text-gray-500 text-sm">Independent Electrical Contractor</p>
+                  <div className="flex text-brand-500 mt-1">
                     <span className="sr-only">4.5 out of 5 stars</span>
                     {[...Array(4)].map((_, i) => (
                       <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
@@ -230,25 +231,25 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              <p className="text-slate-600 italic">"As a contractor, finding consistent work used to be challenging. With ContractHub, I can browse available projects that match my skills and bid on them directly. The milestone payment system ensures I get paid on time, which has been a game-changer for my business."</p>
+              <p className="text-gray-600 italic">"As a contractor, finding consistent work used to be challenging. With ContractHub, I can browse available projects that match my skills and bid on them directly. The milestone payment system ensures I get paid on time, which has been a game-changer for my business."</p>
             </div>
           </div>
         </div>
       </section>
       
       {/* CTA Section */}
-      <section className="py-20 cta-gradient">
+      <section className="py-24 cta-gradient">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Contracting Experience?</h2>
-          <p className="text-lg text-sky-100 mb-8 max-w-2xl mx-auto">Join thousands of companies and contractors who are already using ContractHub to streamline their projects.</p>
-          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+          <h2 className="text-4xl font-bold mb-4">Ready to Transform Your Contracting Experience?</h2>
+          <p className="text-lg text-emerald-50 mb-10 max-w-2xl mx-auto">Join thousands of companies and contractors who are already using ContractHub to streamline their projects.</p>
+          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
             <Link href="/auth?role=company">
-              <Button className="w-full sm:w-auto btn-white">
+              <Button className="w-full sm:w-auto bg-white text-emerald-800 hover:bg-emerald-50 font-medium px-8 py-3 rounded-md transition-colors shadow-lg text-lg">
                 Post a Project
               </Button>
             </Link>
             <Link href="/auth?role=contractor">
-              <Button className="w-full sm:w-auto btn-accent">
+              <Button className="w-full sm:w-auto border-2 border-white text-white hover:bg-emerald-800/20 font-medium px-8 py-3 rounded-md transition-colors text-lg">
                 Join as a Contractor
               </Button>
             </Link>
