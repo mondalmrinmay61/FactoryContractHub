@@ -16,28 +16,28 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [location] = useLocation();
   const { user, logoutMutation } = useAuth();
-
+  
   const isActive = (path: string) => {
     return location === path ? "text-brand-400" : "hover:text-brand-400";
   };
-
+  
   const handleLogout = () => {
     logoutMutation.mutate();
   };
-
+  
   const getInitials = (username: string) => {
     return username.substring(0, 2).toUpperCase();
   };
 
   return (
-    <nav className="bg-emerald-900 text-white shadow-md sticky top-0 z-50">
-      <div className="container mx-auto px-4 relative">
+    <nav className="bg-emerald-900 text-white shadow-md">
+      <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-2">
             <Building className="text-brand-400 h-6 w-6" />
             <Link href="/" className="font-bold text-xl">ContractHub</Link>
           </div>
-
+          
           <div className="hidden md:flex space-x-8">
             <Link href="/projects" className={`transition ${isActive("/projects")}`}>
               Find Projects
@@ -49,7 +49,7 @@ export function Navbar() {
               How It Works
             </Link>
           </div>
-
+          
           <div className="flex items-center space-x-4">
             {user ? (
               <DropdownMenu>
@@ -97,7 +97,7 @@ export function Navbar() {
             </button>
           </div>
         </div>
-
+        
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden">
